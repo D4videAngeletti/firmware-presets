@@ -1,8 +1,8 @@
 #$ TITLE: Davide FPV D-Rock 3 Tune
 #$ FIRMWARE_VERSION: 4.4
 #$ CATEGORY: TUNE
-#$ STATUS: EXPERIMENTAL
-#$ KEYWORDS: Davide FPV, 6S, Freestyle, 5 inch, 5", Davide, Drock, D-ROCK, v3, drock v3, D-rock v3, drock 3, d-rock 3
+#$ STATUS: COMMUNITY
+#$ KEYWORDS: DavideFPV, Davide FPV, 6S, Freestyle, 5 inch, 5", Davide, Drock, D-ROCK, v3, drock v3, D-rock v3, drock 3, d-rock 3
 #$ AUTHOR: Davide FPV (Davide Angeletti)
 
 #$ PARSER: MARKED
@@ -36,6 +36,8 @@ set throttle_boost = 0
 	set simplified_pitch_pi_gain = 105
 
     #$ OPTION END
+
+#$ OPTION_GROUP END
 
 # ---- Filters Base Setup -------
 
@@ -190,5 +192,3 @@ set dshot_bidir = OFF
     #$ OPTION END
 
 #$ OPTION_GROUP END
-
-simplified_tuning apply
