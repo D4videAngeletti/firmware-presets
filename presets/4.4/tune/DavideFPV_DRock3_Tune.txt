@@ -190,3 +190,5 @@ set dshot_bidir = OFF
     #$ OPTION END
 
 #$ OPTION_GROUP END
+
+simplified_tuning apply
