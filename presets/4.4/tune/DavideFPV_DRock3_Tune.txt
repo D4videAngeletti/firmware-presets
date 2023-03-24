@@ -21,12 +21,24 @@
 set anti_gravity_gain = 115
 set craft_name = UNSTOPPABLE
 set throttle_boost = 0
+set iterm_relax_cutoff = 13
 
 #$ OPTION_GROUP BEGIN:PIDs
 
     #$ OPTION BEGIN (CHECKED): 6S Lipo with HD Camera (1750-1850kv motors)
 
-	set iterm_relax_cutoff = 13
+	set p_pitch = 86
+	set i_pitch = 92
+	set f_pitch = 131
+	set p_roll = 78
+	set i_roll = 84
+	set d_roll = 41
+	set f_roll = 119
+	set p_yaw = 78
+	set i_yaw = 84
+	set f_yaw = 119
+	set d_min_roll = 41
+	set d_min_pitch = 46
 	set simplified_master_multiplier = 125
 	set simplified_i_gain = 60
 	set simplified_d_gain = 110
@@ -50,36 +62,44 @@ set dshot_bidir = OFF
     #$ OPTION BEGIN (CHECKED): Conservative Filtering approach or with BMI270
 
 	set dshot_bidir = OFF
-	set simplified_gyro_filter_multiplier = 150
-	set gyro_lpf1_static_hz = 0
-	set gyro_lpf1_dyn_min_hz = 0
-	set gyro_lpf1_dyn_max_hz = 0
-	set dyn_notch_count = 5
-	set dyn_notch_q = 400
-	set dyn_notch_min_hz = 90
-	set dyn_notch_max_hz = 800
-	set simplified_dterm_filter_multiplier = 120
 	set dterm_lpf1_dyn_min_hz = 0
 	set dterm_lpf1_dyn_max_hz = 0
 	set dterm_lpf1_dyn_expo = 0
+	set dterm_lpf1_static_hz = 90
+	set dterm_lpf2_static_hz = 180
+	set gyro_lpf1_static_hz = 0
+	set gyro_lpf2_static_hz = 600
+	set dyn_notch_q = 350
+	set dyn_notch_min_hz = 90
+	set dyn_notch_max_hz = 650
+	set gyro_lpf1_dyn_min_hz = 0
+	set gyro_lpf1_dyn_max_hz = 600
+	set acc_lpf_hz = 10
+	set simplified_dterm_filter_multiplier = 120
+	set simplified_gyro_filter_multiplier = 120
+	set dyn_notch_count = 5
 
     #$ OPTION END
 
     #$ OPTION BEGIN (UNCHECKED): Agressive Filtering approach (clean builds / open flying)
 
 	set dshot_bidir = OFF
-	set simplified_gyro_filter_multiplier = 170
 	set gyro_lpf1_static_hz = 0
-	set gyro_lpf1_dyn_min_hz = 0
-	set gyro_lpf1_dyn_max_hz = 0
-	set dyn_notch_count = 3
-	set dyn_notch_q = 400
+	set gyro_lpf2_static_hz = 0
+	set dyn_notch_q = 350
 	set dyn_notch_min_hz = 90
-	set dyn_notch_max_hz = 650
-	set simplified_dterm_filter_multiplier = 130
+	set dyn_notch_max_hz = 480
+	set gyro_lpf1_dyn_min_hz = 0
+	set gyro_lpf1_dyn_max_hz = 60
 	set dterm_lpf1_dyn_min_hz = 0
 	set dterm_lpf1_dyn_max_hz = 0
 	set dterm_lpf1_dyn_expo = 0
+	set dterm_lpf1_static_hz = 97
+	set dterm_lpf2_static_hz = 19
+	set acc_lpf_hz = 10
+	set simplified_dterm_filter_multiplier = 120
+	set simplified_gyro_filter_multiplier = 120
+	set dyn_notch_count = 3
 
     #$ OPTION END
 
