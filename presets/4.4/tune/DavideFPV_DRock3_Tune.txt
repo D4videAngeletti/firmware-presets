@@ -1,0 +1,214 @@
+#$ TITLE: Davide FPV D-Rock 3 Tune
+#$ FIRMWARE_VERSION: 4.4
+#$ CATEGORY: TUNE
+#$ STATUS: EXPERIMENTAL
+#$ KEYWORDS: DavideFPV, Davide FPV, 6S, Freestyle, 5 inch, 5", Davide, Drock, D-ROCK, v3, drock v3, D-rock v3, drock 3, d-rock 3
+#$ AUTHOR: Davide FPV (Davide Angeletti)
+
+#$ PARSER: MARKED
+#$ INCLUDE_WARNING: misc/warnings/en/rpm_filters.txt
+
+#$ DESCRIPTION: Davide FPV (Davide Angeletti) is a Professional Italian Pilot and Vocational Trainer, Youtube content creator and professional tuner. YT Channel:  [https://www.youtube.com/davidefpv](https://www.youtube.com/davidefpv) IG and TikTok: @davidefpv
+#$ DESCRIPTION:
+#$ DESCRIPTION: Information:
+#$ DESCRIPTION: -----------
+#$ DESCRIPTION: Davide FPV TUNING for the D-ROCK 3 build with 6S, HQProp J40 and 1750-1850kv range motors. 
+#$ DESCRIPTION: -----------
+#$ INCLUDE: presets/4.4/tune/defaults.txt
+
+# -- Antigravity --
+
+set anti_gravity_gain = 115
+set craft_name = UNSTOPPABLE
+set throttle_boost = 0
+set iterm_relax_cutoff = 13
+
+#$ OPTION_GROUP BEGIN:PIDs
+
+    #$ OPTION BEGIN (CHECKED): 6S Lipo with HD Camera (1750-1850kv motors)
+
+	set p_pitch = 86
+	set i_pitch = 92
+	set f_pitch = 131
+	set p_roll = 78
+	set i_roll = 84
+	set d_roll = 41
+	set f_roll = 119
+	set p_yaw = 78
+	set i_yaw = 84
+	set f_yaw = 119
+	set d_min_roll = 41
+	set d_min_pitch = 46
+	set simplified_master_multiplier = 125
+	set simplified_i_gain = 60
+	set simplified_d_gain = 110
+	set simplified_pi_gain = 140
+	set simplified_dmax_gain = 0
+	set simplified_feedforward_gain = 80
+	set simplified_pitch_pi_gain = 105
+
+    #$ OPTION END
+
+#$ OPTION_GROUP END
+
+# ---- Filters Base Setup -------
+
+#$ INCLUDE: presets/4.3/filters/defaults.txt
+
+set dshot_bidir = OFF
+
+#$ OPTION_GROUP BEGIN: Filters
+
+    #$ OPTION BEGIN (CHECKED): Conservative Filtering approach or with BMI270
+
+	set dshot_bidir = OFF
+	set dterm_lpf1_dyn_min_hz = 0
+	set dterm_lpf1_dyn_max_hz = 0
+	set dterm_lpf1_dyn_expo = 0
+	set dterm_lpf1_static_hz = 90
+	set dterm_lpf2_static_hz = 180
+	set gyro_lpf1_static_hz = 0
+	set gyro_lpf2_static_hz = 600
+	set dyn_notch_q = 350
+	set dyn_notch_min_hz = 90
+	set dyn_notch_max_hz = 650
+	set gyro_lpf1_dyn_min_hz = 0
+	set gyro_lpf1_dyn_max_hz = 600
+	set acc_lpf_hz = 10
+	set simplified_dterm_filter_multiplier = 120
+	set simplified_gyro_filter_multiplier = 120
+	set dyn_notch_count = 5
+
+    #$ OPTION END
+
+    #$ OPTION BEGIN (UNCHECKED): Agressive Filtering approach (clean builds / open flying)
+
+	set dshot_bidir = OFF
+	set gyro_lpf1_static_hz = 0
+	set gyro_lpf2_static_hz = 0
+	set dyn_notch_q = 350
+	set dyn_notch_min_hz = 90
+	set dyn_notch_max_hz = 480
+	set gyro_lpf1_dyn_min_hz = 0
+	set gyro_lpf1_dyn_max_hz = 60
+	set dterm_lpf1_dyn_min_hz = 0
+	set dterm_lpf1_dyn_max_hz = 0
+	set dterm_lpf1_dyn_expo = 0
+	set dterm_lpf1_static_hz = 97
+	set dterm_lpf2_static_hz = 19
+	set acc_lpf_hz = 10
+	set simplified_dterm_filter_multiplier = 120
+	set simplified_gyro_filter_multiplier = 120
+	set dyn_notch_count = 3
+
+    #$ OPTION END
+
+
+    #$ OPTION BEGIN (UNCHECKED): Use RPM Filtering for MPU6000 and ICM42688P Gyroscope
+
+        set dshot_bidir = ON
+        set motor_pwm_protocol = DSHOT600
+        set rpm_filter_harmonics = 2
+        set rpm_filter_q = 1000
+        set dyn_notch_count = 2
+        set rpm_filter_fade_range_hz = 100
+	set dyn_idle_min_rpm = 31
+
+    #$ OPTION END 
+
+    #$ OPTION BEGIN (UNCHECKED): Use RPM Filtering for BMI270 Gyroscope
+
+        set dshot_bidir = ON
+        set motor_pwm_protocol = DSHOT300
+        set rpm_filter_harmonics = 3
+        set rpm_filter_q = 1000
+        set dyn_notch_count = 3
+        set rpm_filter_fade_range_hz = 90
+	set dyn_idle_min_rpm = 31
+
+    #$ OPTION END
+
+#$ OPTION_GROUP END
+
+#$ OPTION_GROUP BEGIN: Please choose your RC-Link
+
+    #$ OPTION BEGIN (UNCHECKED): TBS Crossfire Dynamic (CRSF)
+        #$ INCLUDE: presets/4.3/rc_link/defaults.txt
+
+        feature RX_SERIAL
+        set serialrx_provider = CRSF
+
+        set feedforward_averaging = OFF
+        set feedforward_smooth_factor = 15
+        set feedforward_jitter_factor = 10
+        set feedforward_boost = 10
+
+        set rc_smoothing_auto_factor = 45
+        set rc_smoothing_auto_factor_throttle = 45
+
+    #$ OPTION END
+
+    #$ OPTION BEGIN (UNCHECKED): TBS Crossfire 50Hz (CRSF)
+        #$ INCLUDE: presets/4.3/rc_link/defaults.txt
+
+        feature RX_SERIAL
+        set serialrx_provider = CRSF
+
+        set feedforward_averaging = OFF
+        set feedforward_smooth_factor = 0
+        set feedforward_jitter_factor = 10
+        set feedforward_boost = 5
+
+        set rc_smoothing_auto_factor = 45
+        set rc_smoothing_auto_factor_throttle = 45
+
+    #$ OPTION END
+
+    #$ OPTION BEGIN (UNCHECKED): TBS Crossfire 150Hz (CRSF)
+        #$ INCLUDE: presets/4.3/rc_link/defaults.txt
+
+        feature RX_SERIAL
+        set serialrx_provider = CRSF
+
+        set feedforward_averaging = OFF
+        set feedforward_smooth_factor = 30
+        set feedforward_jitter_factor = 7
+
+        set rc_smoothing_auto_factor = 45
+        set rc_smoothing_auto_factor_throttle = 45
+
+    #$ OPTION END
+
+    #$ OPTION BEGIN (UNCHECKED): ELRS or Tracer @ 250Hz
+        #$ INCLUDE: presets/4.3/rc_link/defaults.txt
+
+        feature RX_SERIAL
+        set serialrx_provider = CRSF
+
+        set feedforward_averaging = 2_POINT
+        set feedforward_smooth_factor = 35
+        set feedforward_jitter_factor = 4
+        set feedforward_boost = 18
+
+        set rc_smoothing_auto_factor = 45
+        set rc_smoothing_auto_factor_throttle = 45
+
+    #$ OPTION END
+
+    #$ OPTION BEGIN (UNCHECKED): ELRS @ 500Hz
+        #$ INCLUDE: presets/4.3/rc_link/defaults.txt
+
+        feature RX_SERIAL
+        set serialrx_provider = CRSF
+
+        set feedforward_averaging = 2_POINT
+        set feedforward_smooth_factor = 65
+        set feedforward_jitter_factor = 3
+        set feedforward_boost = 18
+
+        set rc_smoothing_auto_factor = 45
+        set rc_smoothing_auto_factor_throttle = 45
+
+    #$ OPTION END
+
+#$ OPTION_GROUP END
