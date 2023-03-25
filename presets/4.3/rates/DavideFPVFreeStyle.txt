@@ -1,4 +1,4 @@
-#$ TITLE: Davide FPV Rates for Freestyle with Cinematic Option
+TITLE: Davide FPV Rates for Freestyle with Cinematic Option
 #$ FIRMWARE_VERSION: 4.3
 #$ FIRMWARE_VERSION: 4.4
 #$ CATEGORY: RATES
